@@ -1,0 +1,602 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SPA Networks</title>
+    <meta name="title" content="SPA Networks: Scale free networks with modular structures" />
+    <meta name="description" content="SPA Networks" />
+    <link rel="image_src" href="img/logo.png" />
+
+    <meta content="http://www.spa-networks.org/" property="og:url" />
+    <meta content="http://www.spa-networks.org/img/logo.png" property="og:image" />
+    <link rel="shortcut icon" id="favicon" href="favicon.png"> 
+    <meta name="author" content="Jean-Gabriel Young">
+    <link href="http://fonts.googleapis.com/css?family=Lato:300,700,300italic,700italic|Open+Sans:300,400,700|Pacifico:400|Roboto+Condensed:400,300|Roboto+Slab:400,300,100" rel="stylesheet" type="text/css">
+    <meta name="viewport" content="initial-scale=1, width=device-width, maximum-scale=1, minimum-scale=1, user-scalable=no">
+    <!-- jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.9.1.js"></script>
+    <!-- Bootstrap -->
+    <link href="./bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- D3 -->
+    <script type="text/javascript" src="./d3/d3.min.js"></script>
+    <script src="http://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
+    <script type="text/javascript" src="./js/heatmap.js"></script>
+    <script type="text/javascript" src="./js/draw_aster.js" ></script>
+    <!-- Style -->
+    <link href="./css/indexStyle.css" rel="stylesheet">
+    <link href="./css/heatmap.css" rel="stylesheet">
+    <link href="./css/aster.css" rel="stylesheet">
+    <link href="./css/tables.css" rel="stylesheet">
+    <!-- Animation slide -->
+    <script src="./js/animation.js"></script>
+    <!-- Squaresend -->
+    <script src="https://squaresend.com/squaresend.js"></script>
+    <!-- MailChimp campaign -->
+    <link href="//cdn-images.mailchimp.com/embedcode/slim-081711.css" rel="stylesheet" type="text/css">
+    <style type="text/css">
+        #mc_embed_signup {
+            position: absolute;
+            left: 10px;
+            margin-top: 165px;
+            background:#fff;
+            clear:left;
+            font:14px "Roboto Slab",sans-serif;
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Fixed navbar -->
+    <nav class="navbar navbar-custom navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				<button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a data-scroll href="#" class="navbar-brand"><img src="img/logo.png" id="logo"></a>
+			</div>
+			<div id="navbar" class="navbar-collapse bs-navbar-collapse collapse">
+				<ul class="nav navbar-nav">
+				  <li><a data-scroll href="#spa-process">SPA Process</a></li>
+				  <li><a data-scroll href="#detection-results">Benchmarking</a></li>
+				  <li><a data-scroll href="#software">Software &amp; Info</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right  ">
+                  <li><a href="mailto:jean.gabriel.young@gmail.com?sqs_title=Email+us"><span class="glyphicon glyphicon-envelope"></span></a></li>
+                  <li><a href="mailto:jean.gabriel.young@gmail.com?sqs_title=Email+us"><span class="glyphicon glyphicon-console"></span></a></li>
+				</ul>
+			</div>
+		</div>
+    </nav>
+
+    <!-- SPA Network Header -->
+    <div class="container-fluid fill" data-anchor="spa-home">
+
+        <!-- Container of the image -->
+        <div class="container-header">
+              <h1><span style="color:#FF6600">spa</span> <span style="color:#1D3D63">networks</span></h1>
+              <h3>SPA stands for Structural Preferential Attachment</h3>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- SPA in a nutshell -->
+    <a id="spa-process" class="anchor"></a> 
+    <div class="container-fluid container-explanation " data-anchor="spa-process">
+        <h2><span class="container-explanation">SPA in a nutshell</span></h2>
+        <div class="explanation">
+        <p id="tagline">SPA is a <b>discrete growth process</b> for networks featuring scale-free and overlapping <a href="http://en.wikipedia.org/wiki/Community_structure">community structure</a>.</p>
+        <p id="transition">It models two phenomena simultaneously: the growth of <b>community structure</b> and the growth of the <b>internal structure of communities</b>.</p>
+        </div>
+
+
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right fill ">
+            <div class="explanation">
+            <p>In the growth of community structure, a vertex joins a community by creating an edge with an existing member.</p>
+            <p> The vertex (community) is a new one with probability <i>p</i> (<i>q</i>), and otherwise chosen within the existing set of vertices (communities) preferentially.</p>
+            <p>In so doing, SPA generates an network whose building blocks are overlapping groups of scale-free distributed communities.</p>
+            <p>The internal structure of communities is determined by an intuitive <b>densification process</b>.</p>
+            <p>A link is added between two vertices members of a same community, at a rate which is controlled by a third parameter, <i>r</i>.</p>
+            <p>Higher values leads to denser (more connected) communities</p>.
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6  text-left fill ">
+            <img src="img/explained.png">
+        </div>
+<!-- 
+        <div class="col-xs-0 col-sm-3 col-md-3  text-left explanation-final ">
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6  text-center explanation-final ">
+            <p>This simple processes reflects the heterogeneous activity levels of individuals and groups in social networks, as well as the cohesion within groups and their limited density and increasing heterogeneity as they grow in size.</p>
+        </div>
+        <div class="col-xs-0 col-sm-3 col-md-3  text-left explanation-final ">
+        </div> -->
+    </div>
+    <hr>  <!--Separator-->
+ 
+
+
+    <!-- Structural Properties -->
+    <a id="graph-properties" class="anchor"></a> 
+    <div class="container-fluid container-properties " data-anchor="spa-process">
+        <h2><span class="container-properties">Structural Properties</span></h2>
+
+        <h3>Our simple process gives rises to a broad spectrum of synthetic networks.</h3>
+        <p id="read-more">The structural properties below only start to illustrate the richness of the SPA process.</p>
+        <!-- Network related quantities  -->
+
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">&lt; 1</span><span style="float:right;color:#EDE4BF">&gt; 100</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_average_degreee-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_average_degreee-top-tile", "average_degree", 1, "log", [1, 100])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_average_degreee-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_average_degreee-mid-tile", "average_degree", 10, "log", [1, 100])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_average_degreee-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_average_degreee-bot-tile", "average_degree", 50, "log", [1, 100])</script>
+                </div>
+            </div>
+            <h4>Average degree</h4>
+            <p>The average number of edges, and thus of neighbours, per vertex.</p>
+            <a href="http://en.wikipedia.org/wiki/Degree_(graph_theory)"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left"> 0</span><span style="float:right;color:#EDE4BF">&gt; 0.8</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer"  tooltip="r=1"id="layer-top">
+                    <svg role="heatmap_average_clustering-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_average_clustering-top-tile", "average_clustering", 1,  "linear", [0, 0.8])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_average_clustering-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_average_clustering-mid-tile", "average_clustering", 10,  "linear", [0, 0.8])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_average_clustering-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_average_clustering-bot-tile", "average_clustering", 50,  "linear", [0, 0.8])</script>
+                </div>
+            </div>
+            <h4>Average clustering coefficient</h4>
+            <p>Average probability that two neighbours of a given vertex are themselves connected.  </p>
+            <a href="http://en.wikipedia.org/wiki/Clustering_coefficient#Local_clustering_coefficient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+            
+        </div>
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">&lt; -0.2</span><span style="float:right;color:#EDE4BF">&gt; 0.8</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_degree_assortativity-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_degree_assortativity-top-tile", "degree_assortativity_coeff", 1, "linear", [-0.2, 0.8])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_degree_assortativity-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_degree_assortativity-mid-tile", "degree_assortativity_coeff", 10, "linear", [-0.2, 0.8])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_degree_assortativity-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_degree_assortativity-bot-tile", "degree_assortativity_coeff", 50, "linear", [-0.2, 0.8])</script>
+                </div>
+            </div>
+            <h4>Degree assortativity coefficient</h4>
+            <p>Correlation coefficient between the degree of a given vertex and its neighbours' degrees.</p>
+            <a href="http://en.wikipedia.org/wiki/Assortativity#Assortativity_coefficient"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+            
+        </div>
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">1</span><span style="float:right;color:#EDE4BF">&gt; 50</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_maximal_coreness-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_maximal_coreness-top-tile", "max_coreness", 1, "log", [1, 50])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_maximal_coreness-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_maximal_coreness-mid-tile", "max_coreness", 10, "log", [1, 50])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_maximal_coreness-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_maximal_coreness-bot-tile", "max_coreness", 50, "log", [1, 50])</script>
+                </div>
+            </div>
+            <h4>Maximal coreness</h4>
+            <p> Maximum average degree within the most interconnected subset of the network.</p>
+            <a href="http://en.wikipedia.org/wiki/Degeneracy_%28graph_theory%29#k-Cores"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+    </div>
+
+    <!-- Community related quantities  -->
+    
+    <div class="container-fluid container-properties " data-anchor="spa-process">
+
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">&lt; 5</span><span style="float:right;color:#EDE4BF">&gt; 1000</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_max_size-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_max_size-top-tile", "max_size", 1, "log", [5, 1000])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_max_size-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_max_size-mid-tile", "max_size", 10, "log", [5, 1000])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_max_size-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_max_size-bot-tile", "max_size", 50, "log", [5, 1000])</script>
+                </div>
+            </div>
+            <h4>Largest community</h4>
+            <p>The maximum number of vertices that are found within a community.</p>
+            <a href="http://en.wikipedia.org/wiki/Community_structure"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">&lt; 5</span><span style="float:right;color:#EDE4BF">&gt; 400</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_max_memberships-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_max_memberships-top-tile", "max_memberships", 1,  "log", [5, 400])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_max_memberships-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_max_memberships-mid-tile", "max_memberships", 10,  "log", [5, 400])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_max_memberships-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_max_memberships-bot-tile", "max_memberships", 50,  "log", [5, 400])</script>
+                </div>
+            </div>
+            <h4>Highest memberships</h4>
+            <p> The maximum number of communities in which a vertex appears.</p>
+            <a href="http://en.wikipedia.org/wiki/Community_structure"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+            
+        </div>
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">&lt; 0.2</span><span style="float:right;color:#EDE4BF">&gt; 0.8</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_partition_density-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_partition_density-top-tile", "partition_density", 1, "linear", [0.2, 0.8])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_partition_density-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_partition_density-mid-tile", "partition_density", 10, "linear", [0.2, 0.8])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_partition_density-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_partition_density-bot-tile", "partition_density", 50, "linear", [0.2, 0.8])</script>
+                </div>
+            </div>
+            <h4>Partition density</h4>
+            <p>The average fraction of possible edges that actually appear within communities.</p>
+            <a href="http://en.wikipedia.org/wiki/Dense_graph"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+            
+        </div>
+        <div class="col-md-3 text-center heatmap-properties ">
+            <div class="colorbar"><span style="float:left">0</span><span style="float:right;color:#EDE4BF">&gt; 0.005</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_jaccard_overlap-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_jaccard_overlap-top-tile", "jaccard_overlap", 1, "linear", [0, 0.005])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_jaccard_overlap-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_jaccard_overlap-mid-tile", "jaccard_overlap", 10, "linear", [0, 0.005])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_jaccard_overlap-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_jaccard_overlap-bot-tile", "jaccard_overlap", 50, "linear", [0, 0.005])</script>
+                </div>
+            </div>
+            <h4>Average overlap</h4>
+            <p>Similarity of the set of vertices of two randomly selected communities.</p>
+            <a href="http://en.wikipedia.org/wiki/Jaccard_index"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+    </div> <!--end of structural properties -->
+    <hr>  <!--Separator-->
+ 
+
+
+
+    <!-- Structural classes -->
+    <a id="structural-classes" class="anchor"></a> 
+    <div class="container-fluid container-classes text-center " data-anchor="spa-process">
+        <h2><span class="container-classes">Structural Classes</span></h2>
+
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right fill ">
+            <div class="explanation">
+            <h3>Generating a graph for every combination of parameters is time consuming <span class="glyphicon glyphicon-menu-right"></span></h3>
+            <p>The running time <b>explodes</b> for extremal values of <i>p</i>, <i>q</i>, and <i>r</i>.</p>
+
+            <p>Since the structural properties vary <i>continuously</i> with the parameters, similar parameters generate similar networks.</p>
+            <p>Hence, a small subset of <b>qualitatively different</b> networks can give us a good idea of what's going on.</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-3 col-md-3  text-center heatmap-classes ">
+            <h4><span class="glyphicon glyphicon-time" aria-hidden="true"></span> Running time</h4><br/>
+            <div class="colorbar"><span style="float:left">&lt; 5 sec</span><span style="float:right;color:#EDE4BF">&gt; 1000 sec</span></div>
+            <div class="stacked-heatmaps">
+                <div class="layer" id="layer-top" tooltip="r=1">
+                    <svg role="heatmap_duration-top-tile" class="tile" style="overflow:visible"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_duration-top-tile", "duration", 1, "log", [5, 1500])</script>
+                </div>
+                <div class="layer" id="layer-middle" tooltip="r=10">
+                    <svg role="heatmap_duration-mid-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_duration-mid-tile", "duration", 10, "log", [5, 1500])</script>
+                </div>
+                <div class="layer" id="layer-bottom" tooltip="r=50">
+                    <svg role="heatmap_duration-bot-tile" class="tile"></svg>
+                    <script type="text/javascript"> createheatmap("heatmap_duration-bot-tile", "duration", 50, "log", [5, 1500])</script>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xs-0 col-sm-3 col-md-3  fill ">
+        </div>
+
+        <div class="explanation">
+            <p>We identified <b>nine representative sets of parameters</b> by </p>
+            <h3>partitioning the space of networks properties.</h3>
+            <p><a data-scroll href="#structural-classes-summary"><span class="glyphicon glyphicon-menu-down"></span> Here is a summary <span class="glyphicon glyphicon-menu-down"></span></a></p>
+            <a id="structural-classes-summary" class="anchor"></a> 
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr class="table-header">
+                    <th colspan="3">Parameters</th> <th colspan="8"> Selected properties </th>
+                </tr>
+                <tr class="table-subheader">
+                    <th>p    </th><th>q  </th><th>r </th>    <td>Density                      </td>    <td>Clustering                   </td>    <td>Degree assortativity         </td>    <td>Maximal coreness             </td>    <td>Largest community            </td>    <td>Highest membership           </td>    <td>Partition density            </td>    <td>Average overlap</td>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="table-region-1">
+                    <th>0.10</th><th>0.05</th><th>1 </th>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> --- </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>
+                </tr>
+                <tr id="table-region-2">
+                    <th>0.30</th><th>0.15</th><th>1 </th>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  --  </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>
+                </tr>
+                <tr id="table-region-3">
+                    <th>0.85</th><th>0.85</th><th>1 </th>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>
+                </tr>
+                <tr id="table-region-4">
+                    <th>0.45</th><th>0.60</th><th>1 </th>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>
+                </tr>
+                <tr id="table-region-5">
+                    <th>0.75</th><th>0.55</th><th>1 </th>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-mid">  ++  </td>
+                </tr>
+                <tr id="table-region-6">
+                    <th>0.05</th><th>0.85</th><th>10</th>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-low">  +   </td>
+                </tr>
+                <tr id="table-region-7">
+                    <th>0.85</th><th>0.20</th><th>10</th>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-low">  +   </td>
+                </tr>
+                <tr id="table-region-8">
+                    <th>0.75</th><th>0.10</th><th>10</th>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-low">  -   </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>
+                </tr>
+                <tr id="table-region-9">
+                    <th>0.70</th><th>0.80</th><th>10</th>    <td class="table-prop-low">  +   </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-high"> +++ </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-low">  +   </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-mid">  ++  </td>    <td class="table-prop-high"> +++ </td>
+                </tr>
+            </tbody>
+        </table>
+    </div> <!--end of structural classes -->
+    
+    <hr>  <!--Separator-->
+
+    <!-- Detection Results-->
+    <a id="detection-results" class="anchor"></a>
+    <div class="container-fluid container-detection " data-anchor="detection-results">
+        <h2><span class="container-detection">Overlapping Community Detection</span></h2>
+        <div class="explanation">
+            <p>The SPA process generates <b>realistic synthetic networks</b> with a <b>known overlapping community structure</b>.</p>
+            <p><a href="https://scholar.google.com/scholar?q=overlapping+community+detection">Many algorithms</a> aim to uncover such communities in <i>empirical datasets</i>, and telling them apart calls for good benchmarking tools.</p>
+
+            <h3>SPA networks are a perfect fit for the job.</h3>
+            <p>
+                It's a straightforward process.<br/>
+                One simply needs to produce an SPA network, use a detection algorithm to recover its community structure, and compare the results with the known communities (using the <a href="https://sites.google.com/site/andrealancichinetti/mutual">Normalized Mutual Information</a>, for instance).
+            </p>
+            <p>
+                Bellow, we applied <b>state-of-the-art</b> community detection algorithms to the nine representative subsets of networks. <br/>
+                And we found pretty interesting results.
+            </p>
+        </div>
+
+        <div class="col-md-3 text-center algorithm ">
+            <svg role="aster_infomap" class="aster"></svg>
+            <script type="text/javascript"> createaster("aster_infomap", "infomap")</script>
+            <h4>Infomap</h4>
+            <p>Infomap infers the community structure from the flow of information.</p>
+            <a href="http://mapequation.org/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+        <div class="col-md-3 text-center algorithm ">
+            <svg role="aster_bigclam" class="aster"></svg>
+            <script type="text/javascript"> createaster("aster_bigclam", "bigclam")</script>
+            <h4>BigCLAM</h4>
+            <p>BigCLAM fits a generative model to empirical datasets using a coordinate descent.</p>
+            <a href="http://cs.stanford.edu/people/jure/pubs/bigclam-wsdm13.pdf"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+        <div class="col-md-3 text-center algorithm ">
+            <svg role="aster_copra" class="aster"></svg>
+            <script type="text/javascript"> createaster("aster_copra", "copra")</script>
+            <h4>COPRA</h4>
+            <p>COPRA uses the steady state of a label propagation dynamics to determine the assignment of nodes to communities.</p>
+            <a href="http://www.cs.bris.ac.uk/~steve/networks/software/copra.html"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+        <div class="col-md-3 text-center algorithm ">
+            <svg role="aster_oslom" class="aster"></svg>
+            <script type="text/javascript"> createaster("aster_oslom", "oslom")</script>
+            <h4>OSLOM</h4>
+            <p>OSLOM optimizes a fitness function that expresses the statistical significance of communities with respect to random fluctuations.</p>
+            <a href="http://www.oslom.org/"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Further Reading</a>
+        </div>
+        <div class="get-in-touch">
+            <p>Of course, this list is far from complete, so</p>
+            <p id="get-in-touch-call-for-action"><a href="mailto:jean.gabriel.young@gmail.com"><span class="glyphicon glyphicon-envelope"></span> get in touch</a><p>
+            <p>and we'll add your algorithm here.</p>
+            <p>Or you can simply download the software below.</p>
+        </div>
+        
+    </div><!--end of Detection Results -->
+    <hr>  <!--Separator-->
+
+
+
+
+    <!-- Software Download-->
+    <a id="software" class="anchor"></a> 
+    <div class="container-fluid container-software " data-anchor="software">
+        <h2><span class="container-software">Software Download</span></h2>
+        <div class="col-xs-6 col-sm-6 col-md-6 text-right fill ">
+            <div class="explanation">
+                <h4>A detailed paper is in the work.</h4>
+                <p>In the meantime, we're keeping the source code private. Sorry!</p>
+                <p>To get a notification when we start distributing the software, <i>enter your email address here</i>.</p>
+                <p>In the meantime, you may wish to check our <a data-scroll href="#papers">other papers on SPA</a>.</p>
+            </div>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6  text-left fill ">
+
+            <!-- Begin MailChimp Signup Form -->
+            <div id="mc_embed_signup">
+            <form action="//spa-networks.us10.list-manage.com/subscribe/post?u=b764e1d4242b8c74fb687b50a&amp;id=d976e86c5a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+            <div id="mc_embed_signup_scroll">
+            <input type="email" value="" name="EMAIL" class="email" id="mce-EMAIL" placeholder="email address" required>
+            <div style="position: absolute; left: -5000px;"><input type="text" name="b_b764e1d4242b8c74fb687b50a_d976e86c5a" tabindex="-1" value=""></div>
+            <div class="clear"><input type="submit" value="Get a notification" name="subscribe" id="mc-embedded-subscribe" class="button"></div>
+            </div>
+            </form>
+            </div>
+            <!--End mc_embed_signup-->
+        </div>
+
+    </div> <!--end of Software Download -->    
+    <hr>  <!--Separator-->
+
+
+
+
+    <!-- Papers-->
+    <a id="papers" class="anchor"></a> 
+    <div class="container-fluid container-papers " data-anchor="papers">
+        <h2><span class="container-papers">Papers</span></h2>
+        <ul>
+            <li>
+                <span class="pub-title">"Structural preferential attachment: Network organization beyond the link"</span><br/>
+                <span class="pub-authors">L. Hébert-Dufresne, A. Allard, V. Marceau, P.-A. Noël &amp; L.J. Dubé</span><br/>
+                <span class="pub-journal">Phys. Rev. Lett. <b>107</b>, 158702</span>
+                <span class="pub-year">(2011)</span><br/>
+                <a href="http://dx.doi.org/10.1103/PhysRevLett.107.158702"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Journal link</a>
+                |
+                <a href="http://arxiv.org/abs/1105.5980"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> arXiv.org</a>
+
+
+            </li>
+            <li>
+                <span class="pub-title">"Structural preferential attachment: Stochastic process for the growth of scale-free, modular and self-similar systems"</span><br/>
+                <span class="pub-authors">L. Hébert-Dufresne, A. Allard, V. Marceau, P.-A. Noël &amp; L.J. Dubé</span><br/>
+                <span class="pub-journal">Phys. Rev. E <b>85</b>, 026108</span>
+                <span class="pub-year">(2011)</span><br/>
+                <a href="http://dx.doi.org/10.1103/PhysRevE.85.026108"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> Journal link</a> 
+                |
+                <a href="http://arxiv.org/abs/1109.0034"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> arXiv.org</a>
+
+
+            </li>
+            <li>
+                <span class="pub-title">"Complex networks as an emerging property of hierarchical preferential attachment"</span><br/>
+                <span class="pub-authors">L. Hébert-Dufresne, E. Laurence, A. Allard, J.-G. Young &amp; L.J. Dubé</span><br/>
+                <span class="pub-journal">In submission</span>
+                <span class="pub-year">(2014)</span><br/>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Journal link 
+                |
+                <a href="http://arxiv.org/abs/1312.0171"><span class="glyphicon glyphicon-book" aria-hidden="true"></span> arXiv.org</a>
+
+
+            </li>
+            <li>
+                <span class="pub-title">"Structural preferential attachment of community structure and its relation to Dunbar’s number"</span><br/>
+                <span class="pub-authors">J.-G. Young, L. Hébert-Dufresne, A. Allard &amp; L.J. Dubé</span><br/>
+                <span class="pub-journal">In preparation </span>
+                <span class="pub-year">(2015)</span><br/>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Journal link |
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span> arXiv.org
+
+
+            </li>
+            <li>
+                <span class="pub-title">"Structural preferential attachment: Scale-free benchmark graphs for overlapping community detection algorithms"</span><br/>
+                <span class="pub-authors">J.-G. Young, L. Hébert-Dufresne, E. Laurence &amp; L.J. Dubé</span><br/>
+                <span class="pub-journal">In preparation</span>
+                <span class="pub-year">(2015)</span><br/>
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span> Journal link |
+                <span class="glyphicon glyphicon-book" aria-hidden="true"></span> arXiv.org
+
+
+            </li>
+        </ul>
+    </div><!--end of Papers -->
+
+
+  
+    <div class="container-fluid container-credits ">
+        <p>Built by <a href="https://twitter.com/jgabrielyoung" target="_blank">Jean-Gabriel Young</a> and <a href="https://twitter.com/louis_roy">Louis Roy</a>, </p>
+        <p>with the help of <a href="http://edwardlaurence.me" target="_blank">Edward Laurence</a> and <a href="https://sites.google.com/site/laurenthebertdufresne/">Laurent Hébert-Dufresne</a></p>.<br/>
+        <p>Code licensed under <a href="https://github.com/jg-you/spa/blob/master/LICENSE" target="_blank">MIT</a>, documentation under <a href="http://creativecommons.org/licenses/by/3.0/">CC BY 3.0</a>.</p><br/>
+    </div><!--end of Software Download -->
+
+  <!--BOOTSTRAP-->
+  <script src="./js/jquery.inview.min.js"></script>
+  <script src="./bootstrap/js/bootstrap.min.js"></script>
+  <script>
+	  // Triggered when DOM is ready
+	  $(function() {
+			
+			var lastScroll = 0;
+			var direction = true;
+		  
+		  // Triggered when navbar link is clicked
+		  $('#navbar a').on('click', function(ev) {
+			// Remove active class on all menu elements
+			$(this).closest('.navbar-collapse').find('li').removeClass('active');
+			// Add active class on current menu element
+			$(this).closest('li').addClass('active');
+			// Collapse menu
+			$(this).closest('.navbar-collapse').collapse('hide');
+		  });
+		  
+		  $(window).on('scroll', function() {
+			direction = ($(window).scrollTop() > lastScroll);
+			lastScroll = $(window).scrollTop();
+		  });
+		  
+		  // Detect if anchor is in view
+		  $('.container-fluid').bind('inview', function (ev, visible, topOrBottomOrBoth) {
+				var anchor = $(this).data('anchor');
+				console.log(anchor, topOrBottomOrBoth);
+			  if (visible == true) {
+				$('[href="#' + anchor + '"]').closest('li').addClass('active');
+			  } else {
+				$('[href="#' + anchor + '"]').closest('li').removeClass('active');
+			  }
+			  
+			  // Only keep one active
+			  var selector = (direction) ? 'last' : 'first';
+			  $('li.active:not(:' + selector + ')').removeClass('active');
+		  });
+		  
+		  smoothScroll.init();
+	  });
+  </script>
+</body>
+</html>

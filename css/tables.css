@@ -1,0 +1,94 @@
+.container-classes table {
+  table-layout: fixed;
+  width: 850px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+th,
+td{
+  font-family: "Roboto Condensed", serif;
+  font-size: 10pt;
+  padding: 10px;
+  color: #000;
+  text-align: center;
+  border: 2px solid #fff;
+}
+thead th {
+  font-weight: 400;
+  border: 2px solid #fff;
+}
+thead tr.table-header th{
+  background-color: #F5F5D6;
+  font-size: 15pt;
+  border: 2px solid #fff;
+}
+thead tr.table-subheader {
+  background-color: #F5F5D6;
+}
+thead tr.table-subheader td{
+  vertical-align: middle;
+}
+thead tr.table-subheader th{
+  vertical-align: middle;
+}
+tbody th {
+  font-style: italic;
+  font-weight: 300;
+}
+tr#table-region-1 th{
+  background-color: #D73027;
+}
+tr#table-region-2 th{
+  background-color: #F46D43;
+}
+tr#table-region-3 th{
+  background-color: #FDAE61;
+}
+tr#table-region-4 th{
+  background-color: #FEE090;
+}
+tr#table-region-5 th{
+  background-color: #FFFFBF;
+}
+tr#table-region-6 th{
+  background-color: #E0F3F8;
+}
+tr#table-region-7 th{
+  background-color: #ABD9E9;
+}
+tr#table-region-8 th{
+  background-color: #74ADD1;
+}
+tr#table-region-9 th{
+  background-color: #4575B4;
+}
+
+/* Colored cells for qualitative data */
+td.table-prop-high{
+  /*border-radius: 2px;*/
+  background-color: #2B8CBE;
+  /*background-image:url("../img/green_sparse_stripped_repeat_bg.png");*/
+  color: #DDD;
+  font-weight: 300;
+  font-size: 12pt;
+  font-family: "Lato" sans-serif;
+}
+td.table-prop-mid{
+  /*border-radius: 2px;*/
+  background-color: #A6BDDB;
+  /*background-image:url("../img/blue_sparse_stripped_repeat_bg.png");*/
+  color: #FFF;
+  font-weight: 300;
+  font-size: 12pt;
+  font-family: "Lato" sans-serif;
+}
+td.table-prop-low{
+  /*border-radius: 2px;*/
+  background-color: #ECE7F2;
+  /*background-image:url("../img/red_sparse_stripped_repeat_bg.png");*/
+  color: #222;
+  font-weight: 300;
+  font-size: 11pt;
+  font-family: "Lato" sans-serif;
+}

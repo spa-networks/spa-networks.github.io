@@ -1,0 +1,69 @@
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+.aster .outlineArc:hover {
+  fill: rgba(29,60,99,0.2);
+}
+.aster .solidArc {
+  -webkit-transition: all 0.25s ease-in-out;
+     -moz-transition: all 0.25s ease-in-out;
+      -ms-transition: all 0.25s ease-in-out;
+       -o-transition: all 0.25s ease-in-out;
+          transition: all 0.25s ease-in-out;
+}
+.aster .x.axis path {
+  display: none;
+}
+.aster .aster-nmi-tooltip { 
+  text-decoration: overline;
+  font-family: "Roboto Slab";
+  fill: #444;
+  font-size: 15pt;
+}
+.aster .aster-nmi { 
+  fill: #FF6600;
+  font-family: "Lato";
+  font-weight: 700;
+  font-style: italic;
+  font-size: 15pt;
+}
+
+
+/* D3 tooltip */
+.d3-tip {
+  padding: 12px;
+  border-radius: 5px;
+  background: #F5F5D6;
+  text-align: center;
+}
+.d3-tip:after {
+  position: absolute;
+  width: 100%;
+  left: 0px;
+  top: 55px;
+
+  display: inline;
+  box-sizing: border-box;
+  content: "\25BC";
+  color: #F5F5D6;
+
+  font-size: 20pt;
+  line-height: 1;
+}
+span.tip-keyword {
+  font-family: "Lato";
+  font-weight: bold;
+}
+span.tip-parameters {
+  font-family: "Roboto Slab";
+  font-style: italic;
+  color: #444;
+}
+span.tip-score {
+  font-family: "Lato";
+  font-weight: bold;
+  color: #FF6600;
+}
